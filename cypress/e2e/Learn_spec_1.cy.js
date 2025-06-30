@@ -12,7 +12,6 @@ describe('Arriva Bus Homepage', () => {
 
     cy.get('.css-kwtm46').click();
     cy.get('.css-16tupby-placeholder').type('London');
-    //cy.get('#onetrust-accept-btn-handler').click({force:true});
 
     cy.get('#react-select-2-option-0').click({force:true});
     cy.get('.loading-spinner').should('not.exist');
