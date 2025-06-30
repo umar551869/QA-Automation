@@ -22,7 +22,30 @@ describe('Arriva Bus - Homepage', () => {
   
   });
 
-  })
+    it('should complete a basic user journey', () => {
+    cy.wait(3000);
+
+    
+    cy.get('.search-select__value-container').eq(1).click();
+    cy.get('[aria-label="Where do you want to go?"]').type('L', { force: true });
+   
+    cy.get('[id^="react-select"][id$="-option-0"]').should('not.exist');
+    cy.get('[aria-label="Where do you want to go?"]').type('O', { force: true });
+    cy.get('[id^="react-select"][id$="-option-0"]').should('not.exist');
+    cy.get('[aria-label="Where do you want to go?"]').type('N', { force: true });
+    cy.get('[id^="react-select"][id$="-option-0"]').should('exist');
+
+
+
+    cy.get('[id^="react-select"][id$="-option-3"]', { timeout: 10000 })
+        .should('be.visible')
+        .click();
+
+    
+
+});
+
+
 
   it('Varifies Calender Date Selection', () => {
   cy.get('#DPdefault').click({force:true})
@@ -30,4 +53,7 @@ describe('Arriva Bus - Homepage', () => {
   //cy.get('._2nLcqhYfJi2Jep-CiHF4mi > ._nfmPejYIgKBBPi4ONjx7').click({force:true}) 
   cy.get('._2nLcqhYfJi2Jep-CiHF4mi').children().eq(2).click({force:true}) 
 
+    })
+
+  
 })
