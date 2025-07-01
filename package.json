@@ -1,7 +1,7 @@
 {
   "name": "y",
   "version": "1.0.0",
-  "description": "",
+  "description": "This project contains Cypress automation tests for web application quality assurance.",
   "keywords": [],
   "homepage": "https://github.com/umar551869/QA-Automation#readme",
   "bugs": {

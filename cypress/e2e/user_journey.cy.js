@@ -1,19 +1,12 @@
-describe('Arriva Bus - Homepage and accept cookies', () => {
-
-  // Ignore React runtime errors that don’t affect testing
-  Cypress.on('uncaught:exception', (err, runnable) => {
-    return false;
-  });
-
-  beforeEach(() => {
-    cy.visit('https://www.arrivabus.co.uk/');
-
-    // Wait for the cookie banner to appear, then click
-    cy.get('#onetrust-accept-btn-handler', { timeout: 10000 }).should('be.visible').click();
-  });
-
 describe('User Journey', () => {
-  it('should complete a basic user journey', () => {
+   beforeEach('Visits the site and accepts cookies', () => {
+    cy.clearCookies();
+    cy.visit('https://www.arrivabus.co.uk/');
+    cy.get('#onetrust-accept-btn-handler').click({force:true});
+  })
+
+  //shahmeer To function 
+it('should complete a basic user journey', () => {
     cy.wait(3000);
 
     
@@ -32,9 +25,6 @@ describe('User Journey', () => {
         .should('be.visible')
         .click();
 
-    
-
-});
-});
+}); 
 
 });
