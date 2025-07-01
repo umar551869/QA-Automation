@@ -1,4 +1,4 @@
- describe('User Journey', () => {
+ describe('Arriva UK Bus', () => {
    beforeEach('Visits the site and accepts cookies', () => {
     cy.clearCookies();
     cy.visit('https://www.arrivabus.co.uk/');
@@ -17,8 +17,6 @@
    cy.wait(5000)
   cy.get('.search-select__menu-list').should('exist')
 
-  //the following IT has been edited by Umar Ilyas
-  
   
 
   })
