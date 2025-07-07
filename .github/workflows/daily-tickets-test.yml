@@ -1,0 +1,45 @@
+name: Daily Tickets Test
+
+on:
+  schedule:
+    # Run daily at 9:00 PM UTC (adjust timezone as needed)
+    - cron: '0 21 * * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Run Cypress tickets test
+        uses: cypress-io/github-action@v6
+        with:
+          spec: cypress/e2e/tickets.cy.js
+          browser: chrome
+          headless: true
+          
+      - name: Upload screenshots on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          
+      - name: Upload videos on failure
+        uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
